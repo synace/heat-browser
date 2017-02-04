@@ -1,0 +1,64 @@
+<link rel="import" href="../components/polymer/polymer.html">
+
+<link rel="import" href="../components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../components/iron-data-table/iron-data-table.html">
+
+<dom-module id="heat-blockchain">
+
+    <template>
+
+        <style>
+            :host {
+                display: block;
+            }
+        </style>
+
+        <!-- @TODO https://saulis.github.io/iron-data-table/demo/index.html -->
+        <iron-ajax url="../data/blockchain.json"
+                   last-response="{{blockchain}}"
+                   auto>
+        </iron-ajax>
+
+        <!-- @TODO https://saulis.github.io/iron-data-table/demo/details.html -->
+        <iron-data-table items="[[blockchain]]">
+            <data-table-column name="Height" filter-by="item.height">
+                <template>[[item.height]]</template>
+            </data-table-column>
+            <data-table-column name="Block">
+                <template>[[item.block]]</template>
+            </data-table-column>
+            <data-table-column name="Date">
+                <template>[[item.timestamp]]</template>
+            </data-table-column>
+            <data-table-column name="Generator">
+                <template>[[item.generator]]</template>
+            </data-table-column>
+            <data-table-column name="Transactions">
+                <template>[[item.numberOfTransactions]]</template>
+            </data-table-column>
+            <data-table-column name="Amount">
+                <template>[[item.totalAmountHQT]]</template>
+            </data-table-column>
+            <data-table-column name="Fee" flex="1">
+                <template>[[item.totalFeeHQT]]</template>
+            </data-table-column>
+            <data-table-column name="POS Reward">
+                <template>[[item.posRewardHQT]]</template>
+            </data-table-column>
+            <data-table-column name="POP Reward">
+                <template>[[item.popRewardHQT]]</template>
+            </data-table-column>
+        </iron-data-table>
+    </template>
+
+    <script>
+
+        Polymer({
+
+            is: 'heat-blockchain',
+
+        });
+
+    </script>
+
+</dom-module>
